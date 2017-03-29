@@ -12,15 +12,25 @@ import org.springframework.web.servlet.ModelAndView;
 public class HomeController {
 
 	@RequestMapping(value = "/", method = RequestMethod.GET)
-	public String displayHello(ModelMap modelMap) {
+	public String getHomePage(ModelMap modelMap) {
 		modelMap.addAttribute("message", "Hello World!");
-		return "home";
+		return "pages/home";
+	}
+	
+	@RequestMapping(value = "/about", method = RequestMethod.GET)
+	public String getAboutPage(ModelMap modelMap) {
+		return "pages/about";
+	}
+	
+	@RequestMapping(value = "/contact", method = RequestMethod.GET)
+	public String getContactPage(ModelMap modelMap) {
+		return "pages/contact";
 	}
 	
 	@RequestMapping(value = "/hello/{name:.+}", method = RequestMethod.GET)
 	public ModelAndView hello(@PathVariable("name") String name) {
 		ModelAndView model = new ModelAndView();
-		model.setViewName("home");
+		model.setViewName("pages/home");
 		model.addObject("msg", name);
 		return model;
 	}
